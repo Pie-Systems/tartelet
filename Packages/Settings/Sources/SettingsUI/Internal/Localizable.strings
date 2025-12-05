@@ -3,6 +3,7 @@
 "settings.general.application_ui_mode.dock" = "Dock";
 "settings.general.application_ui_mode.menu_bar" = "Menu Bar";
 "settings.general.application_ui_mode.dock_and_menu_bar" = "Dock and Menu Bar";
+"settings.general.ci_service" = "CI Service";
 "settings.general.export_logs" = "Export Logs...";
 
 "settings.virtual_machine.tart_home" = "Tart Home";
@@ -40,8 +41,10 @@
 "settings.github.private_key.scopes.repository" = "The private key must have these scopes set:\n✔ Repository: Administration (Read and write)\n✔ Repository: Metadata (Read-only)";
 "settings.github.create_app" = "Create GitHub App";
 
+"settings.circleci" = "CircleCI";
+
 "settings.github_runner" = "Runner";
-"settings.github_runner.disableDefaultLabels" = "Disable default labels"
+"settings.github_runner.disableDefaultLabels" = "Disable default labels";
 "settings.github_runner.disableUpdates" = "Disable runner auto-update";
 "settings.github_runner.disableUpdates.subtitle" = "This is meant to be used when a fixed version is pre-installed, otherwise Tartelet will install the latest version when the VM starts.";
 "settings.github_runner.labels" = "Labels";

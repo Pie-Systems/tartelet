@@ -13,6 +13,20 @@ struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
     let logExporter: LogExporter
     let isSettingsEnabled: Bool
 
+    @ViewBuilder
+    var ciServiceView: some View {
+        switch settingsStore.ciService {
+        case .github:
+            GitHubSettingsView(
+                settingsStore: settingsStore,
+                credentialsStore: gitHubCredentialsStore,
+                isSettingsEnabled: isSettingsEnabled
+            )
+        case .circleci:
+            CircleCISettingsView()
+        }
+    }
+
     var body: some View {
         TabView {
             GeneralSettingsView(
@@ -31,18 +45,16 @@ struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
             .tabItem {
                 Label(L10n.Settings.virtualMachine, systemImage: "desktopcomputer")
             }
-            GitHubSettingsView(
-                settingsStore: settingsStore,
-                credentialsStore: gitHubCredentialsStore,
-                isSettingsEnabled: isSettingsEnabled
-            )
-            .tabItem {
-                Label {
-                    Text(L10n.Settings.github)
-                } icon: {
-                    Asset.github.swiftUIImage
+
+            ciServiceView
+                .tabItem {
+                    Label {
+                        Text(settingsStore.ciService.title)
+                    } icon: {
+                        settingsStore.ciService.image
+                    }
                 }
-            }
+
             GitHubRunnerSettingsView(
                 settingsStore: settingsStore,
                 isSettingsEnabled: isSettingsEnabled

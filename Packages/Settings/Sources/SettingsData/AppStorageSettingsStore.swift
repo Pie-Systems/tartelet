@@ -6,6 +6,7 @@ import SwiftUI
 public final class AppStorageSettingsStore: SettingsStore {
     private enum AppStorageKey {
         static let applicationUIMode = "applicationUIMode"
+        static let ciService = "ciService"
         static let tartHomeFolderURL = "tartHomeFolderURL"
         static let virtualMachine = "virtualMachine"
         static let numberOfVirtualMachines = "numberOfVirtualMachines"
@@ -30,6 +31,20 @@ public final class AppStorageSettingsStore: SettingsStore {
         set {
             withMutation(keyPath: \.applicationUIMode) {
                 userDefaults.setRawRepresentable(newValue, forKey: AppStorageKey.applicationUIMode)
+            }
+        }
+    }
+    public var ciService: CIService {
+        get {
+            access(keyPath: \.ciService)
+            return userDefaults.getRawRepresentable(
+                CIService.self,
+                forKey: AppStorageKey.ciService
+            ) ?? .github
+        }
+        set {
+            withMutation(keyPath: \.ciService) {
+                userDefaults.setRawRepresentable(newValue, forKey: AppStorageKey.ciService)
             }
         }
     }

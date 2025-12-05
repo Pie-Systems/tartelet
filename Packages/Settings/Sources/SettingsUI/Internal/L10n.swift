@@ -11,6 +11,8 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
   internal enum Settings {
+    /// CircleCI
+    internal static let circleci = L10n.tr("Localizable", "settings.circleci", fallback: "CircleCI")
     /// Documentation
     internal static let documentation = L10n.tr("Localizable", "settings.documentation", fallback: "Documentation")
     /// General
@@ -30,6 +32,8 @@ internal enum L10n {
     internal enum General {
       /// Show App In
       internal static let applicationUiMode = L10n.tr("Localizable", "settings.general.application_ui_mode", fallback: "Show App In")
+      /// CI Service
+      internal static let ciService = L10n.tr("Localizable", "settings.general.ci_service", fallback: "CI Service")
       /// Export Logs...
       internal static let exportLogs = L10n.tr("Localizable", "settings.general.export_logs", fallback: "Export Logs...")
       internal enum ApplicationUiMode {
@@ -85,6 +89,8 @@ internal enum L10n {
       }
     }
     internal enum GithubRunner {
+      /// Disable default labels
+      internal static let disableDefaultLabels = L10n.tr("Localizable", "settings.github_runner.disableDefaultLabels", fallback: "Disable default labels")
       /// Disable runner auto-update
       internal static let disableUpdates = L10n.tr("Localizable", "settings.github_runner.disableUpdates", fallback: "Disable runner auto-update")
       /// Group
@@ -101,7 +107,6 @@ internal enum L10n {
         /// acme
         internal static let prompt = L10n.tr("Localizable", "settings.github_runner.group.prompt", fallback: "acme")
       }
-      internal static let disableDefaultLabels = L10n.tr("Localizable", "settings.github_runner.disableDefaultLabels", fallback: "Disable default labels")
       internal enum Labels {
         /// Comma-separated list of labels.
         internal static let footer = L10n.tr("Localizable", "settings.github_runner.labels.footer", fallback: "Comma-separated list of labels.")

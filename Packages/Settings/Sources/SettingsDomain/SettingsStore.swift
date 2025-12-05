@@ -3,6 +3,7 @@ import SwiftUI
 
 public protocol SettingsStore: AnyObject {
     var applicationUIMode: ApplicationUIMode { get set }
+    var ciService: CIService { get set }
     var tartHomeFolderURL: URL? { get set }
     var virtualMachine: VirtualMachine { get set }
     var numberOfVirtualMachines: Int { get set }
