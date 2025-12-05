@@ -17,6 +17,12 @@ struct GeneralSettingsView<SettingsStoreType: SettingsStore & Observable>: View 
                     Text(mode.title)
                 }
             }
+
+            Picker(L10n.Settings.General.ciService, selection: $settingsStore.ciService) {
+                ForEach(CIService.allCases) { service in
+                    Text(service.title)
+                }
+            }
         }
         .formStyle(.grouped)
         .overlay(alignment: .bottomTrailing) {
