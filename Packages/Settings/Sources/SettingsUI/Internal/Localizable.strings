@@ -45,7 +45,11 @@
 "settings.github.private_key.scopes.repository" = "The private key must have these scopes set:\n✔ Repository: Administration (Read and write)\n✔ Repository: Metadata (Read-only)";
 "settings.github.create_app" = "Create GitHub App";
 
-"settings.github_runner" = "Runner";
+"settings.runner" = "Runner";
+"settings.runner.name" = "Name";
+"settings.runner.name.prompt" = "Optional custom name, e.g., My CI Runner";
+"settings.runner.name.footer" = "Base name for runners.";
+
 "settings.github_runner.disableDefaultLabels" = "Disable default labels";
 "settings.github_runner.disableUpdates" = "Disable runner auto-update";
 "settings.github_runner.disableUpdates.subtitle" = "This is meant to be used when a fixed version is pre-installed, otherwise Tartelet will install the latest version when the VM starts.";
@@ -54,9 +58,6 @@
 "settings.github_runner.labels.footer" = "Comma-separated list of labels.";
 "settings.github_runner.group" = "Group";
 "settings.github_runner.group.prompt" = "acme";
-"settings.github_runner.name" = "Name";
-"settings.github_runner.name.prompt" = "Optional custom name, e.g., My CI Runner";
-"settings.github_runner.name.footer" = "Base name for runners.";
 
 "settings.runner_scope.organization" = "Organization";
 "settings.runner_scope.repository" = "Repository";

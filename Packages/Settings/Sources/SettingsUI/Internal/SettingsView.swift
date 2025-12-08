@@ -32,6 +32,22 @@ struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
         }
     }
 
+    @ViewBuilder
+    var runnerSettingsView: some View {
+        switch settingsStore.ciService {
+        case .github:
+            GitHubRunnerSettingsView(
+                settingsStore: settingsStore,
+                isSettingsEnabled: isSettingsEnabled
+            )
+        case .circleci:
+            CircleCIRunnerSettingsView(
+                settingsStore: settingsStore,
+                isSettingsEnabled: isSettingsEnabled
+            )
+        }
+    }
+
     var body: some View {
         TabView {
             GeneralSettingsView(
@@ -60,17 +76,15 @@ struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
                     }
                 }
 
-            GitHubRunnerSettingsView(
-                settingsStore: settingsStore,
-                isSettingsEnabled: isSettingsEnabled
-            )
-            .tabItem {
-                Label {
-                    Text(L10n.Settings.githubRunner)
-                } icon: {
-                    Asset.githubActions.swiftUIImage
+            runnerSettingsView
+                .tabItem {
+                    Label {
+                        Text(L10n.Settings.runner)
+                    } icon: {
+                        Asset.githubActions.swiftUIImage
+                    }
                 }
-            }
+
             DocumentationSettingsView()
                 .tabItem {
                     Label(L10n.Settings.documentation, systemImage: "text.book.closed")

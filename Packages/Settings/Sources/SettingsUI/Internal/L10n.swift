@@ -20,7 +20,7 @@ internal enum L10n {
     /// GitHub
     internal static let github = L10n.tr("Localizable", "settings.github", fallback: "GitHub")
     /// Runner
-    internal static let githubRunner = L10n.tr("Localizable", "settings.github_runner", fallback: "Runner")
+    internal static let runner = L10n.tr("Localizable", "settings.runner", fallback: "Runner")
     /// Virtual Machine
     internal static let virtualMachine = L10n.tr("Localizable", "settings.virtual_machine", fallback: "Virtual Machine")
     internal enum Circleci {
@@ -105,8 +105,6 @@ internal enum L10n {
       internal static let group = L10n.tr("Localizable", "settings.github_runner.group", fallback: "Group")
       /// Labels
       internal static let labels = L10n.tr("Localizable", "settings.github_runner.labels", fallback: "Labels")
-      /// Name
-      internal static let name = L10n.tr("Localizable", "settings.github_runner.name", fallback: "Name")
       internal enum DisableUpdates {
         /// This is meant to be used when a fixed version is pre-installed, otherwise Tartelet will install the latest version when the VM starts.
         internal static let subtitle = L10n.tr("Localizable", "settings.github_runner.disableUpdates.subtitle", fallback: "This is meant to be used when a fixed version is pre-installed, otherwise Tartelet will install the latest version when the VM starts.")
@@ -121,11 +119,15 @@ internal enum L10n {
         /// comma,separated,list
         internal static let prompt = L10n.tr("Localizable", "settings.github_runner.labels.prompt", fallback: "comma,separated,list")
       }
+    }
+    internal enum Runner {
+      /// Name
+      internal static let name = L10n.tr("Localizable", "settings.runner.name", fallback: "Name")
       internal enum Name {
         /// Base name for runners.
-        internal static let footer = L10n.tr("Localizable", "settings.github_runner.name.footer", fallback: "Base name for runners.")
+        internal static let footer = L10n.tr("Localizable", "settings.runner.name.footer", fallback: "Base name for runners.")
         /// Optional custom name, e.g., My CI Runner
-        internal static let prompt = L10n.tr("Localizable", "settings.github_runner.name.prompt", fallback: "Optional custom name, e.g., My CI Runner")
+        internal static let prompt = L10n.tr("Localizable", "settings.runner.name.prompt", fallback: "Optional custom name, e.g., My CI Runner")
       }
     }
     internal enum RunnerScope {
