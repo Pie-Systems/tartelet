@@ -1,4 +1,5 @@
 import FileSystemData
+import CircleCIData
 import GitHubData
 import GitHubDomain
 import Keychain
@@ -66,6 +67,13 @@ enum Composers {
             ),
             settingsStore: settingsStore
         )
+    )
+
+    static let circleCICredentialsStore = KeychainCircleCICredentialsStore(
+        keychain: keychain(
+            logger: logger(subsystem: "CircleCICredentialsStore")
+        ),
+        serviceName: "Tartelet CircleCI Account"
     )
 
     static let gitHubCredentialsStore = KeychainGitHubCredentialsStore(

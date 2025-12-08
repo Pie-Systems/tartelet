@@ -25,6 +25,10 @@
 "settings.virtual_machine.ssh.footer" = "The credentials are used to SSH into the virtual machine to configure it to start the GitHub Actions runner. Make sure \"Remote Login\" is enabled in the virtual machine.";
 "settings.virtual_machine.start_virtual_machines_on_app_launch" = "Start Virtual Machines on App Launch";
 
+"settings.circleci" = "CircleCI";
+"settings.circleci.resource_class_token" = "Resource Class Token";
+"settings.circleci.resource_class_token.prompt" = "abc123def456";
+
 "settings.github" = "GitHub";
 "settings.github.organization_name" = "Organization Name";
 "settings.github.organization_name.prompt" = "Acme Coorporation";
@@ -40,8 +44,6 @@
 "settings.github.private_key.scopes.organization" = "The private key must have these scopes set:\n✔ Organization: Self-hosted runners (Read and write)";
 "settings.github.private_key.scopes.repository" = "The private key must have these scopes set:\n✔ Repository: Administration (Read and write)\n✔ Repository: Metadata (Read-only)";
 "settings.github.create_app" = "Create GitHub App";
-
-"settings.circleci" = "CircleCI";
 
 "settings.github_runner" = "Runner";
 "settings.github_runner.disableDefaultLabels" = "Disable default labels";

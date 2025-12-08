@@ -1,3 +1,4 @@
+import CircleCIDomain
 import GitHubDomain
 import LoggingDomain
 import Observation
@@ -7,6 +8,7 @@ import VirtualMachineDomain
 
 struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
     let settingsStore: SettingsStoreType
+    let circleCICredentialsStore: CircleCICredentialsStore
     let gitHubCredentialsStore: GitHubCredentialsStore
     let virtualMachineSSHCredentialsStore: VirtualMachineSSHCredentialsStore
     let virtualMachinesSourceNameRepository: VirtualMachineSourceNameRepository
@@ -23,7 +25,10 @@ struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
                 isSettingsEnabled: isSettingsEnabled
             )
         case .circleci:
-            CircleCISettingsView()
+            CircleCISettingsView(
+                settingsStore: settingsStore,
+                credentialsStore: circleCICredentialsStore
+            )
         }
     }
 

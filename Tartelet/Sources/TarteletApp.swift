@@ -22,10 +22,14 @@ struct TarteletApp: App {
                 virtualMachineSSHCredentialsStore: Composers.virtualMachineSSHCredentialsStore,
                 githubCredentialsStore: Composers.gitHubCredentialsStore
             ),
-            virtualMachineState: VirtualMachineState(fleet: Composers.fleet, editor: Composers.editor)
+            virtualMachineState: VirtualMachineState(
+                fleet: Composers.fleet,
+                editor: Composers.editor
+            )
         )
         SettingsScene(
             settingsStore: Composers.settingsStore,
+            circleCICredentialsStore: Composers.circleCICredentialsStore,
             gitHubCredentialsStore: Composers.gitHubCredentialsStore,
             virtualMachineSSHCredentialsStore: Composers.virtualMachineSSHCredentialsStore,
             virtualMachinesSourceNameRepository: TartVirtualMachineSourceNameRepository(

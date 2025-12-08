@@ -23,6 +23,14 @@ internal enum L10n {
     internal static let githubRunner = L10n.tr("Localizable", "settings.github_runner", fallback: "Runner")
     /// Virtual Machine
     internal static let virtualMachine = L10n.tr("Localizable", "settings.virtual_machine", fallback: "Virtual Machine")
+    internal enum Circleci {
+      /// Resource Class Token
+      internal static let resourceClassToken = L10n.tr("Localizable", "settings.circleci.resource_class_token", fallback: "Resource Class Token")
+      internal enum ResourceClassToken {
+        /// abc123def456
+        internal static let prompt = L10n.tr("Localizable", "settings.circleci.resource_class_token.prompt", fallback: "abc123def456")
+      }
+    }
     internal enum Documentation {
       /// Find articles on getting started with Tartelet and advanced topics in the documentation.
       internal static let introduction = L10n.tr("Localizable", "settings.documentation.introduction", fallback: "Find articles on getting started with Tartelet and advanced topics in the documentation.")
