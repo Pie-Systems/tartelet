@@ -8,6 +8,7 @@ public protocol SettingsStore: AnyObject {
     var virtualMachine: VirtualMachine { get set }
     var numberOfVirtualMachines: Int { get set }
     var startVirtualMachinesOnLaunch: Bool { get set }
+
     var gitHubPrivateKeyName: String? { get set }
     var gitHubRunnerDisableUpdates: Bool { get set }
     var gitHubRunnerLabels: String { get set }
@@ -15,4 +16,6 @@ public protocol SettingsStore: AnyObject {
     var gitHubRunnerName: String { get set }
     var gitHubRunnerDisableDefaultLabels: Bool { get set }
     var githubRunnerScope: GitHubRunnerScope { get set }
+
+    var circleCIRunnerName: String { get set }
 }

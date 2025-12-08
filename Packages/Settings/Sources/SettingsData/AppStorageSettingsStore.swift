@@ -18,6 +18,7 @@ public final class AppStorageSettingsStore: SettingsStore {
         static let gitHubRunnerName = "gitHubRunnerName"
         static let gitHubRunnerDisableDefaultLabels = "gitHubRunnerDisableDefaultLabels"
         static let githubRunnerScope = "githubRunnerScope"
+        static let circleCIRunnerName = "circleCIRunnerName"
     }
 
     public var applicationUIMode: ApplicationUIMode {
@@ -175,6 +176,18 @@ public final class AppStorageSettingsStore: SettingsStore {
         set {
             withMutation(keyPath: \.githubRunnerScope) {
                 userDefaults.setRawRepresentable(newValue, forKey: AppStorageKey.githubRunnerScope)
+            }
+        }
+    }
+
+    public var circleCIRunnerName: String {
+        get {
+            access(keyPath: \.circleCIRunnerName)
+            return userDefaults.string(forKey: AppStorageKey.circleCIRunnerName) ?? ""
+        }
+        set {
+            withMutation(keyPath: \.circleCIRunnerName) {
+                userDefaults.setValue(newValue, forKey: AppStorageKey.circleCIRunnerName)
             }
         }
     }
