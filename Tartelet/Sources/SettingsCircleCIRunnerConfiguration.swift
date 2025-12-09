@@ -7,6 +7,6 @@ struct SettingsCircleCIRunnerConfiguration<
     let settingsStore: SettingsStoreType
 
     var runnerName: String {
-        settingsStore.gitHubRunnerName
+        settingsStore.circleCIRunnerName
     }
 }
