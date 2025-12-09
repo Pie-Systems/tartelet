@@ -25,6 +25,14 @@ struct CircleCIRunnerSettingsView<SettingsStoreType: SettingsStore & Observable>
                 )
                 .disabled(!isSettingsEnabled)
             }
+
+            Section {
+                Toggle(isOn: $settingsStore.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys) {
+                    Text(L10n.Settings.CircleciRunner.useHomeSSHDirForCheckoutKeys)
+                    Text(L10n.Settings.CircleciRunner.UseHomeSSHDirForCheckoutKeys.subtitle)
+                }
+                .disabled(!isSettingsEnabled)
+            }
         }
         .formStyle(.grouped)
     }

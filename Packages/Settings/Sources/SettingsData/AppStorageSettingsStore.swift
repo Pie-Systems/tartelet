@@ -19,6 +19,7 @@ public final class AppStorageSettingsStore: SettingsStore {
         static let gitHubRunnerDisableDefaultLabels = "gitHubRunnerDisableDefaultLabels"
         static let githubRunnerScope = "githubRunnerScope"
         static let circleCIRunnerName = "circleCIRunnerName"
+        static let circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys = "circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys"
     }
 
     public var applicationUIMode: ApplicationUIMode {
@@ -188,6 +189,23 @@ public final class AppStorageSettingsStore: SettingsStore {
         set {
             withMutation(keyPath: \.circleCIRunnerName) {
                 userDefaults.setValue(newValue, forKey: AppStorageKey.circleCIRunnerName)
+            }
+        }
+    }
+
+    public var circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys: Bool {
+        get {
+            access(keyPath: \.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys)
+            return userDefaults.bool(
+                forKey: AppStorageKey.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys
+            )
+        }
+        set {
+            withMutation(keyPath: \.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys) {
+                userDefaults.setValue(
+                    newValue,
+                    forKey: AppStorageKey.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys
+                )
             }
         }
     }

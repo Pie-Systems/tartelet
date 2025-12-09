@@ -18,4 +18,5 @@ public protocol SettingsStore: AnyObject {
     var githubRunnerScope: GitHubRunnerScope { get set }
 
     var circleCIRunnerName: String { get set }
+    var circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys: Bool { get set }
 }

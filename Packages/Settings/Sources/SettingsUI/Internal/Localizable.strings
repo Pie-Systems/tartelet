@@ -50,6 +50,9 @@
 "settings.runner.name.prompt" = "Optional custom name, e.g., My CI Runner";
 "settings.runner.name.footer" = "Base name for runners.";
 
+"settings.circleci_runner.useHomeSSHDirForCheckoutKeys" = "Use Home SSH directory for checkout keys";
+"settings.circleci_runner.useHomeSSHDirForCheckoutKeys.subtitle" = "This flag enables you to use the home directory of the user running the self-hosted runner instance for storing SSH checkout keys.";
+
 "settings.github_runner.disableDefaultLabels" = "Disable default labels";
 "settings.github_runner.disableUpdates" = "Disable runner auto-update";
 "settings.github_runner.disableUpdates.subtitle" = "This is meant to be used when a fixed version is pre-installed, otherwise Tartelet will install the latest version when the VM starts.";

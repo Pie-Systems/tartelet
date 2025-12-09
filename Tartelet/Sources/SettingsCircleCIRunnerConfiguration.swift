@@ -9,4 +9,8 @@ struct SettingsCircleCIRunnerConfiguration<
     var runnerName: String {
         settingsStore.circleCIRunnerName
     }
+
+    var useHomeSSHDirectoryForCheckoutKeys: Bool {
+        settingsStore.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys
+    }
 }

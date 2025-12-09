@@ -31,6 +31,14 @@ internal enum L10n {
         internal static let prompt = L10n.tr("Localizable", "settings.circleci.resource_class_token.prompt", fallback: "abc123def456")
       }
     }
+    internal enum CircleciRunner {
+      /// Use Home SSH directory for checkout keys
+      internal static let useHomeSSHDirForCheckoutKeys = L10n.tr("Localizable", "settings.circleci_runner.useHomeSSHDirForCheckoutKeys", fallback: "Use Home SSH directory for checkout keys")
+      internal enum UseHomeSSHDirForCheckoutKeys {
+        /// This flag enables you to use the home directory of the user running the self-hosted runner instance for storing SSH checkout keys.
+        internal static let subtitle = L10n.tr("Localizable", "settings.circleci_runner.useHomeSSHDirForCheckoutKeys.subtitle", fallback: "This flag enables you to use the home directory of the user running the self-hosted runner instance for storing SSH checkout keys.")
+      }
+    }
     internal enum Documentation {
       /// Find articles on getting started with Tartelet and advanced topics in the documentation.
       internal static let introduction = L10n.tr("Localizable", "settings.documentation.introduction", fallback: "Find articles on getting started with Tartelet and advanced topics in the documentation.")

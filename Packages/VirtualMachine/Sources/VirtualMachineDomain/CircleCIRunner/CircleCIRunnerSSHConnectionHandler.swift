@@ -41,6 +41,8 @@ public struct CircleCIRunnerSSHConnectionHandler: VirtualMachineSSHConnectionHan
         let name = virtualMachine.runnerName(preferring: configuration.runnerName)
         logger.info("Starting with name \"\(name)\"")
 
+        let useHomeSSHDirForCheckoutKeys = configuration.useHomeSSHDirectoryForCheckoutKeys
+
         let startRunnerScriptFilePath = "~/start-runner.sh"
         try await connection.executeCommand("touch \(startRunnerScriptFilePath)")
         try await connection.executeCommand("""
@@ -75,7 +77,8 @@ circleci-runner machine --api.auth-token="\(authToken)" \
   --runner.name="\(name)" \
   --runner.mode="single-task" \
   --runner.working-directory="\\$HOME/project" \
-  --runner.cleanup-working-directory="false"
+  --runner.cleanup-working-directory="false" \
+  --runner.use-home-ssh-dir-for-checkout-keys="\(useHomeSSHDirForCheckoutKeys)"
 
 EOF
 """)
