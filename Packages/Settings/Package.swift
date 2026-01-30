@@ -18,6 +18,7 @@ let package = Package(
         ])
     ],
     dependencies: [
+        .package(path: "../CircleCI"),
         .package(path: "../GitHub"),
         .package(path: "../Logging"),
         .package(path: "../VirtualMachine")
@@ -28,6 +29,7 @@ let package = Package(
             .product(name: "GitHubDomain", package: "GitHub")
         ]),
         .target(name: "SettingsDomain", dependencies: [
+            .product(name: "CircleCIDomain", package: "CircleCI"),
             .product(name: "GitHubDomain", package: "GitHub"),
             .product(name: "VirtualMachineDomain", package: "VirtualMachine")
         ], resources: [
@@ -35,6 +37,7 @@ let package = Package(
         ]),
         .target(name: "SettingsUI", dependencies: [
             "SettingsDomain",
+            .product(name: "CircleCIDomain", package: "CircleCI"),
             .product(name: "GitHubDomain", package: "GitHub"),
             .product(name: "LoggingDomain", package: "Logging"),
             .product(name: "VirtualMachineDomain", package: "VirtualMachine")

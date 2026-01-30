@@ -10,7 +10,7 @@ struct GitHubRunnerSettingsView<SettingsStoreType: SettingsStore & Observable>: 
         Form {
             Section {
                 TextField(
-                    L10n.Settings.GithubRunner.name,
+                    L10n.Settings.Runner.name,
                     text: $settingsStore.gitHubRunnerName,
                     prompt: Text(githubRunnerNamePrompt)
                 )
@@ -51,7 +51,7 @@ struct GitHubRunnerSettingsView<SettingsStoreType: SettingsStore & Observable>: 
     private var githubRunnerNamePrompt: String {
         switch settingsStore.virtualMachine {
             case .unknown:
-                return L10n.Settings.GithubRunner.Name.prompt
+                return L10n.Settings.Runner.Name.prompt
             case .virtualMachine(let name):
                 return name
         }

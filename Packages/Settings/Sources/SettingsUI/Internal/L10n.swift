@@ -11,6 +11,8 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
   internal enum Settings {
+    /// CircleCI
+    internal static let circleci = L10n.tr("Localizable", "settings.circleci", fallback: "CircleCI")
     /// Documentation
     internal static let documentation = L10n.tr("Localizable", "settings.documentation", fallback: "Documentation")
     /// General
@@ -18,9 +20,25 @@ internal enum L10n {
     /// GitHub
     internal static let github = L10n.tr("Localizable", "settings.github", fallback: "GitHub")
     /// Runner
-    internal static let githubRunner = L10n.tr("Localizable", "settings.github_runner", fallback: "Runner")
+    internal static let runner = L10n.tr("Localizable", "settings.runner", fallback: "Runner")
     /// Virtual Machine
     internal static let virtualMachine = L10n.tr("Localizable", "settings.virtual_machine", fallback: "Virtual Machine")
+    internal enum Circleci {
+      /// Resource Class Token
+      internal static let resourceClassToken = L10n.tr("Localizable", "settings.circleci.resource_class_token", fallback: "Resource Class Token")
+      internal enum ResourceClassToken {
+        /// abc123def456
+        internal static let prompt = L10n.tr("Localizable", "settings.circleci.resource_class_token.prompt", fallback: "abc123def456")
+      }
+    }
+    internal enum CircleciRunner {
+      /// Use Home SSH directory for checkout keys
+      internal static let useHomeSSHDirForCheckoutKeys = L10n.tr("Localizable", "settings.circleci_runner.useHomeSSHDirForCheckoutKeys", fallback: "Use Home SSH directory for checkout keys")
+      internal enum UseHomeSSHDirForCheckoutKeys {
+        /// This flag enables you to use the home directory of the user running the self-hosted runner instance for storing SSH checkout keys.
+        internal static let subtitle = L10n.tr("Localizable", "settings.circleci_runner.useHomeSSHDirForCheckoutKeys.subtitle", fallback: "This flag enables you to use the home directory of the user running the self-hosted runner instance for storing SSH checkout keys.")
+      }
+    }
     internal enum Documentation {
       /// Find articles on getting started with Tartelet and advanced topics in the documentation.
       internal static let introduction = L10n.tr("Localizable", "settings.documentation.introduction", fallback: "Find articles on getting started with Tartelet and advanced topics in the documentation.")
@@ -30,6 +48,8 @@ internal enum L10n {
     internal enum General {
       /// Show App In
       internal static let applicationUiMode = L10n.tr("Localizable", "settings.general.application_ui_mode", fallback: "Show App In")
+      /// CI Service
+      internal static let ciService = L10n.tr("Localizable", "settings.general.ci_service", fallback: "CI Service")
       /// Export Logs...
       internal static let exportLogs = L10n.tr("Localizable", "settings.general.export_logs", fallback: "Export Logs...")
       internal enum ApplicationUiMode {
@@ -85,14 +105,14 @@ internal enum L10n {
       }
     }
     internal enum GithubRunner {
+      /// Disable default labels
+      internal static let disableDefaultLabels = L10n.tr("Localizable", "settings.github_runner.disableDefaultLabels", fallback: "Disable default labels")
       /// Disable runner auto-update
       internal static let disableUpdates = L10n.tr("Localizable", "settings.github_runner.disableUpdates", fallback: "Disable runner auto-update")
       /// Group
       internal static let group = L10n.tr("Localizable", "settings.github_runner.group", fallback: "Group")
       /// Labels
       internal static let labels = L10n.tr("Localizable", "settings.github_runner.labels", fallback: "Labels")
-      /// Name
-      internal static let name = L10n.tr("Localizable", "settings.github_runner.name", fallback: "Name")
       internal enum DisableUpdates {
         /// This is meant to be used when a fixed version is pre-installed, otherwise Tartelet will install the latest version when the VM starts.
         internal static let subtitle = L10n.tr("Localizable", "settings.github_runner.disableUpdates.subtitle", fallback: "This is meant to be used when a fixed version is pre-installed, otherwise Tartelet will install the latest version when the VM starts.")
@@ -101,18 +121,21 @@ internal enum L10n {
         /// acme
         internal static let prompt = L10n.tr("Localizable", "settings.github_runner.group.prompt", fallback: "acme")
       }
-      internal static let disableDefaultLabels = L10n.tr("Localizable", "settings.github_runner.disableDefaultLabels", fallback: "Disable default labels")
       internal enum Labels {
         /// Comma-separated list of labels.
         internal static let footer = L10n.tr("Localizable", "settings.github_runner.labels.footer", fallback: "Comma-separated list of labels.")
         /// comma,separated,list
         internal static let prompt = L10n.tr("Localizable", "settings.github_runner.labels.prompt", fallback: "comma,separated,list")
       }
+    }
+    internal enum Runner {
+      /// Name
+      internal static let name = L10n.tr("Localizable", "settings.runner.name", fallback: "Name")
       internal enum Name {
         /// Base name for runners.
-        internal static let footer = L10n.tr("Localizable", "settings.github_runner.name.footer", fallback: "Base name for runners.")
+        internal static let footer = L10n.tr("Localizable", "settings.runner.name.footer", fallback: "Base name for runners.")
         /// Optional custom name, e.g., My CI Runner
-        internal static let prompt = L10n.tr("Localizable", "settings.github_runner.name.prompt", fallback: "Optional custom name, e.g., My CI Runner")
+        internal static let prompt = L10n.tr("Localizable", "settings.runner.name.prompt", fallback: "Optional custom name, e.g., My CI Runner")
       }
     }
     internal enum RunnerScope {

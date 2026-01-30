@@ -1,3 +1,4 @@
+import CircleCIDomain
 import GitHubDomain
 import VirtualMachineDomain
 
@@ -10,11 +11,13 @@ public enum ConfigurationState {
     case missingGitHubOrganizationName
     case missingGitHubOwnerName
     case missingGitHubRepositoryName
+    case missingCircleCIResourceClassToken
 
     public init(
         settingsStore: some SettingsStore,
         virtualMachineSSHCredentialsStore: VirtualMachineSSHCredentialsStore,
-        githubCredentialsStore: GitHubCredentialsStore
+        githubCredentialsStore: GitHubCredentialsStore,
+        circleCICredentialsStore: CircleCICredentialsStore
     ) {
         if case .unknown = settingsStore.virtualMachine {
             self = .missingVirtualMachine
@@ -22,7 +25,20 @@ public enum ConfigurationState {
             self = .missingSSHCredentials
         } else if (virtualMachineSSHCredentialsStore.password ?? "").isEmpty {
             self = .missingSSHCredentials
-        } else if (githubCredentialsStore.appId ?? "").isEmpty {
+        } else if settingsStore.ciService == .github {
+            self.init(settingsStore: settingsStore, githubCredentialsStore: githubCredentialsStore)
+        } else if settingsStore.ciService == .circleci {
+            self.init(circleCICredentialsStore: circleCICredentialsStore)
+        } else {
+            self = .ready
+        }
+    }
+
+    private init(
+        settingsStore: some SettingsStore,
+        githubCredentialsStore: GitHubCredentialsStore
+    ) {
+        if (githubCredentialsStore.appId ?? "").isEmpty {
             self = .missingGitHubAppId
         } else if githubCredentialsStore.privateKey == nil {
             self = .missingGitHubPrivateKey
@@ -35,6 +51,14 @@ public enum ConfigurationState {
         } else if settingsStore.githubRunnerScope == .repo
                     && (githubCredentialsStore.repositoryName ?? "").isEmpty {
             self = .missingGitHubRepositoryName
+        } else {
+            self = .ready
+        }
+    }
+
+    private init(circleCICredentialsStore: CircleCICredentialsStore) {
+        if (circleCICredentialsStore.resourceClassToken ?? "").isEmpty {
+            self = .missingCircleCIResourceClassToken
         } else {
             self = .ready
         }
@@ -60,6 +84,8 @@ public extension ConfigurationState {
             L10n.Settings.ConfigurationState.MissingGithubOwnerName.shortInstruction
         case .missingGitHubRepositoryName:
             L10n.Settings.ConfigurationState.MissingGithubRepositoryName.shortInstruction
+        case .missingCircleCIResourceClassToken:
+            L10n.Settings.ConfigurationState.MissingCircleciResourceClassToken.shortInstruction
         }
     }
 }

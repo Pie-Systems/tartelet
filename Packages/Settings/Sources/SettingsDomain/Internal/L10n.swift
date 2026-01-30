@@ -12,6 +12,10 @@ import Foundation
 internal enum L10n {
   internal enum Settings {
     internal enum ConfigurationState {
+      internal enum MissingCircleciResourceClassToken {
+        /// Set CircleCI Resource Class Token…
+        internal static let shortInstruction = L10n.tr("Localizable", "settings.configuration_state.missing_circleci_resource_class_token.short_instruction", fallback: "Set CircleCI Resource Class Token…")
+      }
       internal enum MissingGithubAppId {
         /// Set GitHub App ID...
         internal static let shortInstruction = L10n.tr("Localizable", "settings.configuration_state.missing_github_app_id.short_instruction", fallback: "Set GitHub App ID...")

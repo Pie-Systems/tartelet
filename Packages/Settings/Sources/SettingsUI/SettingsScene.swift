@@ -1,3 +1,4 @@
+import CircleCIDomain
 import GitHubDomain
 import LoggingDomain
 import Observation
@@ -7,6 +8,7 @@ import VirtualMachineDomain
 
 public struct SettingsScene<SettingsStoreType: SettingsStore & Observable>: Scene {
     private let settingsStore: SettingsStoreType
+    private let circleCICredentialsStore: CircleCICredentialsStore
     private let gitHubCredentialsStore: GitHubCredentialsStore
     private let virtualMachineSSHCredentialsStore: VirtualMachineSSHCredentialsStore
     private let virtualMachinesSourceNameRepository: VirtualMachineSourceNameRepository
@@ -19,6 +21,7 @@ public struct SettingsScene<SettingsStoreType: SettingsStore & Observable>: Scen
 
     public init(
         settingsStore: SettingsStoreType,
+        circleCICredentialsStore: CircleCICredentialsStore,
         gitHubCredentialsStore: GitHubCredentialsStore,
         virtualMachineSSHCredentialsStore: VirtualMachineSSHCredentialsStore,
         virtualMachinesSourceNameRepository: VirtualMachineSourceNameRepository,
@@ -27,6 +30,7 @@ public struct SettingsScene<SettingsStoreType: SettingsStore & Observable>: Scen
         editor: VirtualMachineEditor
     ) {
         self.settingsStore = settingsStore
+        self.circleCICredentialsStore = circleCICredentialsStore
         self.gitHubCredentialsStore = gitHubCredentialsStore
         self.virtualMachineSSHCredentialsStore = virtualMachineSSHCredentialsStore
         self.virtualMachinesSourceNameRepository = virtualMachinesSourceNameRepository
@@ -39,6 +43,7 @@ public struct SettingsScene<SettingsStoreType: SettingsStore & Observable>: Scen
         Settings {
             SettingsView(
                 settingsStore: settingsStore,
+                circleCICredentialsStore: circleCICredentialsStore,
                 gitHubCredentialsStore: gitHubCredentialsStore,
                 virtualMachineSSHCredentialsStore: virtualMachineSSHCredentialsStore,
                 virtualMachinesSourceNameRepository: virtualMachinesSourceNameRepository,

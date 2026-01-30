@@ -1,4 +1,5 @@
 import FileSystemData
+import CircleCIData
 import GitHubData
 import GitHubDomain
 import Keychain
@@ -37,17 +38,27 @@ enum Composers {
                 credentialsStore: virtualMachineSSHCredentialsStore,
                 connectionHandler: CompositeVirtualMachineSSHConnectionHandler([
                     PostBootScriptSSHConnectionHandler(),
-                    GitHubActionsRunnerSSHConnectionHandler(
-                        logger: logger(subsystem: "GitHubActionsRunnerSSHConnectionHandler"),
-                        client: NetworkingGitHubClient(
+                    CIServiceCompositeSSHConnectionHandler(
+                        settings: settingsStore,
+                        gitHubConnectionHandler: GitHubActionsRunnerSSHConnectionHandler(
+                            logger: logger(subsystem: "GitHubActionsRunnerSSHConnectionHandler"),
+                            client: NetworkingGitHubClient(
+                                credentialsStore: gitHubCredentialsStore,
+                                networkingService: URLSessionNetworkingService(
+                                    logger: logger(subsystem: "URLSessionNetworkingService")
+                                )
+                            ),
                             credentialsStore: gitHubCredentialsStore,
-                            networkingService: URLSessionNetworkingService(
-                                logger: logger(subsystem: "URLSessionNetworkingService")
+                            configuration: SettingsGitHubActionsRunnerConfiguration(
+                                settingsStore: settingsStore
                             )
                         ),
-                        credentialsStore: gitHubCredentialsStore,
-                        configuration: SettingsGitHubActionsRunnerConfiguration(
-                            settingsStore: settingsStore
+                        circleCIConnectionHandler: CircleCIRunnerSSHConnectionHandler(
+                            logger: logger(subsystem: "CircleCIRunnerSSHConnectionHandler"),
+                            credentialsStore: circleCICredentialsStore,
+                            configuration: SettingsCircleCIRunnerConfiguration(
+                                settingsStore: settingsStore
+                            )
                         )
                     )
                 ])
@@ -66,6 +77,13 @@ enum Composers {
             ),
             settingsStore: settingsStore
         )
+    )
+
+    static let circleCICredentialsStore = KeychainCircleCICredentialsStore(
+        keychain: keychain(
+            logger: logger(subsystem: "CircleCICredentialsStore")
+        ),
+        serviceName: "Tartelet CircleCI Account"
     )
 
     static let gitHubCredentialsStore = KeychainGitHubCredentialsStore(

@@ -1,3 +1,4 @@
+import CircleCIDomain
 import GitHubDomain
 import LoggingDomain
 import Observation
@@ -7,11 +8,45 @@ import VirtualMachineDomain
 
 struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
     let settingsStore: SettingsStoreType
+    let circleCICredentialsStore: CircleCICredentialsStore
     let gitHubCredentialsStore: GitHubCredentialsStore
     let virtualMachineSSHCredentialsStore: VirtualMachineSSHCredentialsStore
     let virtualMachinesSourceNameRepository: VirtualMachineSourceNameRepository
     let logExporter: LogExporter
     let isSettingsEnabled: Bool
+
+    @ViewBuilder
+    var ciServiceView: some View {
+        switch settingsStore.ciService {
+        case .github:
+            GitHubSettingsView(
+                settingsStore: settingsStore,
+                credentialsStore: gitHubCredentialsStore,
+                isSettingsEnabled: isSettingsEnabled
+            )
+        case .circleci:
+            CircleCISettingsView(
+                settingsStore: settingsStore,
+                credentialsStore: circleCICredentialsStore
+            )
+        }
+    }
+
+    @ViewBuilder
+    var runnerSettingsView: some View {
+        switch settingsStore.ciService {
+        case .github:
+            GitHubRunnerSettingsView(
+                settingsStore: settingsStore,
+                isSettingsEnabled: isSettingsEnabled
+            )
+        case .circleci:
+            CircleCIRunnerSettingsView(
+                settingsStore: settingsStore,
+                isSettingsEnabled: isSettingsEnabled
+            )
+        }
+    }
 
     var body: some View {
         TabView {
@@ -31,29 +66,25 @@ struct SettingsView<SettingsStoreType: SettingsStore & Observable>: View {
             .tabItem {
                 Label(L10n.Settings.virtualMachine, systemImage: "desktopcomputer")
             }
-            GitHubSettingsView(
-                settingsStore: settingsStore,
-                credentialsStore: gitHubCredentialsStore,
-                isSettingsEnabled: isSettingsEnabled
-            )
-            .tabItem {
-                Label {
-                    Text(L10n.Settings.github)
-                } icon: {
-                    Asset.github.swiftUIImage
+
+            ciServiceView
+                .tabItem {
+                    Label {
+                        Text(settingsStore.ciService.title)
+                    } icon: {
+                        settingsStore.ciService.image
+                    }
                 }
-            }
-            GitHubRunnerSettingsView(
-                settingsStore: settingsStore,
-                isSettingsEnabled: isSettingsEnabled
-            )
-            .tabItem {
-                Label {
-                    Text(L10n.Settings.githubRunner)
-                } icon: {
-                    Asset.githubActions.swiftUIImage
+
+            runnerSettingsView
+                .tabItem {
+                    Label {
+                        Text(L10n.Settings.runner)
+                    } icon: {
+                        Asset.githubActions.swiftUIImage
+                    }
                 }
-            }
+
             DocumentationSettingsView()
                 .tabItem {
                     Label(L10n.Settings.documentation, systemImage: "text.book.closed")

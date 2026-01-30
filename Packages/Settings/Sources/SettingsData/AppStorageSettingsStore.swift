@@ -6,6 +6,7 @@ import SwiftUI
 public final class AppStorageSettingsStore: SettingsStore {
     private enum AppStorageKey {
         static let applicationUIMode = "applicationUIMode"
+        static let ciService = "ciService"
         static let tartHomeFolderURL = "tartHomeFolderURL"
         static let virtualMachine = "virtualMachine"
         static let numberOfVirtualMachines = "numberOfVirtualMachines"
@@ -17,6 +18,8 @@ public final class AppStorageSettingsStore: SettingsStore {
         static let gitHubRunnerName = "gitHubRunnerName"
         static let gitHubRunnerDisableDefaultLabels = "gitHubRunnerDisableDefaultLabels"
         static let githubRunnerScope = "githubRunnerScope"
+        static let circleCIRunnerName = "circleCIRunnerName"
+        static let circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys = "circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys"
     }
 
     public var applicationUIMode: ApplicationUIMode {
@@ -30,6 +33,20 @@ public final class AppStorageSettingsStore: SettingsStore {
         set {
             withMutation(keyPath: \.applicationUIMode) {
                 userDefaults.setRawRepresentable(newValue, forKey: AppStorageKey.applicationUIMode)
+            }
+        }
+    }
+    public var ciService: CIService {
+        get {
+            access(keyPath: \.ciService)
+            return userDefaults.getRawRepresentable(
+                CIService.self,
+                forKey: AppStorageKey.ciService
+            ) ?? .github
+        }
+        set {
+            withMutation(keyPath: \.ciService) {
+                userDefaults.setRawRepresentable(newValue, forKey: AppStorageKey.ciService)
             }
         }
     }
@@ -160,6 +177,35 @@ public final class AppStorageSettingsStore: SettingsStore {
         set {
             withMutation(keyPath: \.githubRunnerScope) {
                 userDefaults.setRawRepresentable(newValue, forKey: AppStorageKey.githubRunnerScope)
+            }
+        }
+    }
+
+    public var circleCIRunnerName: String {
+        get {
+            access(keyPath: \.circleCIRunnerName)
+            return userDefaults.string(forKey: AppStorageKey.circleCIRunnerName) ?? ""
+        }
+        set {
+            withMutation(keyPath: \.circleCIRunnerName) {
+                userDefaults.setValue(newValue, forKey: AppStorageKey.circleCIRunnerName)
+            }
+        }
+    }
+
+    public var circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys: Bool {
+        get {
+            access(keyPath: \.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys)
+            return userDefaults.bool(
+                forKey: AppStorageKey.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys
+            )
+        }
+        set {
+            withMutation(keyPath: \.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys) {
+                userDefaults.setValue(
+                    newValue,
+                    forKey: AppStorageKey.circleCIRunnerUseHomeSSHDirectoryForCheckoutKeys
+                )
             }
         }
     }
