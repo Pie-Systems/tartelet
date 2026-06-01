@@ -15,6 +15,7 @@ let package = Package(
         ])
     ],
     dependencies: [
+        .package(path: "../CircleCI"),
         .package(path: "../GitHub"),
         .package(path: "../Keychain"),
         .package(path: "../Logging"),
@@ -29,6 +30,7 @@ let package = Package(
             .product(name: "ShellDomain", package: "Shell")
         ]),
         .target(name: "VirtualMachineDomain", dependencies: [
+            .product(name: "CircleCIDomain", package: "CircleCI"),
             .product(name: "GitHubDomain", package: "GitHub"),
             .product(name: "LoggingDomain", package: "Logging"),
             .product(name: "SSHDomain", package: "SSH")
