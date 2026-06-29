@@ -61,6 +61,7 @@ until curl -Is https://circleci.com &>/dev/null; do :; done
 
 # Download the runner.
 brew tap circleci-public/circleci
+brew trust --cask circleci-public/circleci/circleci-runner
 brew install circleci-runner
 
 # Review and accept the Apple signature notarization
